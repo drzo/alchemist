@@ -18,7 +18,15 @@ A collection of educational examples of **Pedro Domingos' Tensor Logic** — a p
    
    See [Neural Nestor Gauge Logic Documentation](docs/Neural-Nestor-Gauge-Logic.md) for details.
 
-2. **Hypercomplex Extensions** - extends from Boolean/Real to Complex/Quaternion/Octonion and beyond:
+2. **Alchemist Engine & Reactor Vessel** - a safe tensor transformation pipeline:
+   - **Alchemist Engine**: Manages tensor transformations through registered "elixirs" (transformation recipes)
+   - **Reactor Vessel**: Provides isolated execution with safety constraints and real-time monitoring
+   - **Transmutation Steps**: Custom functions, activation functions, and threshold operations
+   - **Event System**: Real-time progress tracking and resource monitoring
+   
+   See [Alchemist Engine Documentation](docs/Alchemist-Engine.md) for details.
+
+3. **Hypercomplex Extensions** - extends from Boolean/Real to Complex/Quaternion/Octonion and beyond:
    - **Complex (ℂ)**: Quantum-inspired AI with phase and amplitude
    - **Quaternion (ℍ)**: 3D spatial reasoning with rotation-equivariant networks
    - **Octonion (𝕆)**: Non-associative logic for context-sensitive reasoning
