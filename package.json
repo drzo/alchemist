@@ -17,10 +17,11 @@
     "test:validation": "tsx scripts/test-validation.ts",
     "test:unit": "tsx scripts/test-unit.ts",
     "test:raptl": "tsx scripts/test-raptl.ts",
-    "test": "tsx scripts/test-neural-nestor.ts && tsx scripts/test-validation.ts && tsx scripts/test-unit.ts && tsx scripts/test-raptl.ts"
+    "test:alchemist": "tsx scripts/test-alchemist.ts",
+    "demo:alchemist": "tsx scripts/demo-alchemist.ts",
     "test:hypercomplex": "npx tsx scripts/test-hypercomplex.ts",
     "test:graded-basis": "npx tsx scripts/test-graded-basis.ts",
-    "test": "tsx scripts/test-neural-nestor.ts && tsx scripts/test-validation.ts && tsx scripts/test-unit.ts"
+    "test": "tsx scripts/test-neural-nestor.ts && tsx scripts/test-validation.ts && tsx scripts/test-unit.ts && tsx scripts/test-raptl.ts && tsx scripts/test-alchemist.ts"
   },
   "dependencies": {
     "mathjs": "^13.2.0"
