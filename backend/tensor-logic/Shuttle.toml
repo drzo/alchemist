@@ -1,0 +1,16 @@
+# Include dist files in deployment (dist/ is gitignored, so we need to explicitly include it)
+# Note: According to Shuttle docs, specifying only a folder name doesn't work - use "dist/*" instead
+# The dist folder is built in GitHub Actions before deployment
+# No hook scripts (shuttle_prebuild.sh, shuttle_postbuild.sh) are used - frontend is built in CI
+[deploy]
+include = [
+  "dist/*",
+]
+
+# Copy dist files to runtime image
+# The dist/ directory contents are copied to /build_assets/dist/
+[build]
+assets = [
+  "dist/*",
+]
+

@@ -1,0 +1,90 @@
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Font files - NOTE: We self-host fonts, so .woff2 files SHOULD be committed
+# Commented out to allow font files in git (required for self-hosting)
+# src/fonts/**/*.ttf
+# src/fonts/**/*.woff
+# src/fonts/**/*.woff2
+# src/fonts/**/*.otf
+# src/fonts/**/*.eot
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+.envrc
+
+# Secrets and keys (never commit these!)
+**/Secrets*.toml
+**/*.key
+**/*.pem
+**/*.p12
+**/*.pfx
+**/*.crt
+**/*.cer
+**/secrets/
+**/.secrets/
+*.secret
+*.private
+
+# IDE and editor files
+# Allow .vscode/settings.json (workspace settings benefit the team)
+.vscode/*
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.temp/
+*.cache
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+.jest/
+
+# Misc
+*.bak
+*.backup
+*.old
+*.orig

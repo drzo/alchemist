@@ -1,0 +1,38 @@
+{
+  "name": "tensor-logic-demo",
+  "version": "1.0.0",
+  "description": "Educational demo of Pedro Domingos' Tensor Logic - unifying neural and symbolic AI",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:scripts": "tsc -p tsconfig.scripts.json",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "typecheck:scripts": "tsc -p tsconfig.scripts.json --noEmit",
+    "test:scroll": "tsx scripts/test-scroll.ts",
+    "test:scroll:all": "tsx scripts/test-scroll.ts --all-steps",
+    "test:nestor": "tsx scripts/test-neural-nestor.ts",
+    "test:validation": "tsx scripts/test-validation.ts",
+    "test:unit": "tsx scripts/test-unit.ts",
+    "test:raptl": "tsx scripts/test-raptl.ts",
+    "test": "tsx scripts/test-neural-nestor.ts && tsx scripts/test-validation.ts && tsx scripts/test-unit.ts && tsx scripts/test-raptl.ts"
+    "test:hypercomplex": "npx tsx scripts/test-hypercomplex.ts",
+    "test:graded-basis": "npx tsx scripts/test-graded-basis.ts",
+    "test": "tsx scripts/test-neural-nestor.ts && tsx scripts/test-validation.ts && tsx scripts/test-unit.ts"
+  },
+  "dependencies": {
+    "mathjs": "^13.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@types/node": "^22.10.2",
+    "eslint": "^9.16.0",
+    "puppeteer": "^23.11.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
+    "vite": "^6.0.3"
+  }
+}

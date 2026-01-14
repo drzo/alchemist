@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history needed for TruffleHog
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+        
+      - name: Check for secrets
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.pull_request.base.ref || github.event.before || github.event.repository.default_branch || 'main' }}
+          head: ${{ github.event.pull_request.head.ref || github.event.after || github.sha }}
+        continue-on-error: true
+        if: always() && (github.event.pull_request.base.ref || (github.event.before != '' && github.event.after != ''))
+        
+      - name: Run linter
+        run: npm run lint
+        
+      - name: Run type check
+        run: npm run typecheck
+        
+      - name: Type check scripts
+        run: npm run typecheck:scripts
+        
+      - name: Build application
+        run: npm run build
+        
+      - name: Build scripts
+        run: npm run build:scripts
+        
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: backend/tensor-logic/dist/
+          retention-days: 7
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Build frontend
+        run: |
+          npm ci
+          npm run build
+          
+      - name: Verify dist folder exists
+        run: |
+          ls -la backend/tensor-logic/dist/ || echo "ERROR: dist folder not found!"
+          test -f backend/tensor-logic/dist/index.html || echo "ERROR: index.html not found!"
+          
+      - name: Deploy to Shuttle
+        uses: shuttle-hq/deploy-action@v2
+        with:
+          shuttle-api-key: ${{ secrets.SHUTTLE_API_KEY }}
+          project-id: proj_01KCJDQWVDRP2A38R07R3M30F4
+          working-directory: backend/tensor-logic
+          extra-args: "--allow-dirty"
+
